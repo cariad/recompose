@@ -61,15 +61,6 @@ workflows:
             tags:
               only: /.*/
 
-      - docs:
-          context:
-            - python
-          filters:
-            branches:
-              only: /.*/
-            tags:
-              only: /.*/
-
       - test:
           context:
             - python
@@ -84,7 +75,6 @@ workflows:
             - python
           requires:
             - lint
-            - docs
             - test
           filters:
             branches:
