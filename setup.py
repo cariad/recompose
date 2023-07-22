@@ -39,9 +39,13 @@ setup(
     name="recompose",
     packages=[
         "recompose",
+        "recompose.cursors",
+        "recompose.transformers",
     ],
     package_data={
         "recompose": ["py.typed"],
+        "recompose.cursors": ["py.typed"],
+        "recompose.transformers": ["py.typed"],
     },
     python_requires=">=3.9",
     url="https://github.com/cariad/recompose",

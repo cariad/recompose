@@ -12,6 +12,7 @@ pytest = "*"
 pytest-cov = "*"
 shellcheck-py = "*"
 twine = "*"
+types-pyyaml = "*"
 yamllint = "*"
 
 [packages]
