@@ -1,0 +1,29 @@
+object_0:
+  groups:
+    chefs:
+      - name: Alice
+      - name: Bob
+      - name: Charlie
+
+    firefighters:
+      name: Daniel
+
+    zookeepers:
+      - name: Gregory
+      - name: Harold
+      - name: Ingrid
+
+object_1:
+  groups:
+    chefs:
+      - name: Jet
+      - name: Karen
+      - name: Lois
+
+    firefighters:
+      name: Mater
+
+    zookeepers:
+      - name: Peter
+      - name: Quentin
+      - name: Reginald

@@ -1,4 +1,4 @@
-from typing import Any, Dict, List, TypedDict
+from typing import Any, Dict, List, TypedDict, Union
 
 WithArgs = Dict[str, Any]
 
@@ -18,4 +18,4 @@ class _CursorSchema(TypedDict, total=False):
 
 class CursorSchema(_CursorSchema):
     on: str
-    perform: List[TransformSchema]
+    perform: Union[List[TransformSchema], TransformSchema]

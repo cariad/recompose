@@ -1,6 +1,0 @@
-version: 1
-each-value:
-  path: groups
-  each-value:
-    path: am:performance:company
-    this-value: list-to-object

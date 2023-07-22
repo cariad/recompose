@@ -48,5 +48,8 @@ class Cursor(ABC):
         Yields each transformer.
         """
 
-        for transform in self._schema["perform"]:
-            yield find_transformer(transform)
+        if isinstance(self._schema["perform"], list):
+            for transform in self._schema["perform"]:
+                yield find_transformer(transform)
+        else:
+            yield find_transformer(self._schema["perform"])

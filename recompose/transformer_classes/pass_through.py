@@ -1,6 +1,7 @@
 from typing import Any
 
 from recompose.cursors import make_cursor
+from recompose.logging import log
 from recompose.transformer import Transformer
 from recompose.with_readers import WithCursorSchemaReader, WithPathReader
 
@@ -19,11 +20,13 @@ class Pass(Transformer):
         )
 
         path = WithPathReader.get_required(self.with_args)
-        data = data[path]
+        child_data = data[path]
 
-        transformed = cursor.transform(data)
+        log.debug('%s will transform %s from path "%s"', self, child_data, path)
+        transformed = cursor.transform(child_data)
 
         return {
+            **data,
             path: transformed,
         }
 
