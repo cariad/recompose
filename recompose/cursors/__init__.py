@@ -1,11 +1,13 @@
 from typing import List, Type
 
 from recompose.cursor import Cursor
+from recompose.cursors.each_value import EachValue
 from recompose.cursors.this_value import ThisValue
 from recompose.exceptions import NoCursorAvailable
 from recompose.types import TemplateType
 
 types: List[Type[Cursor]] = [
+    EachValue,
     ThisValue,
 ]
 
