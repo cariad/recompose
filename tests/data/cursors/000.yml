@@ -1,0 +1,4 @@
+version: 1
+on: this-value
+perform:
+  - transform: list-to-object

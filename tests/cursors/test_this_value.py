@@ -1,4 +1,4 @@
-from recompose.cursors.this_value import ThisValue
+from recompose.cursor_classes import ThisValue
 
 
 def test_str() -> None:

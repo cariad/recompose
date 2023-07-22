@@ -1,6 +1,21 @@
-from typing import Any, Dict, List, Union
+from typing import Any, Dict, List, TypedDict
 
-TemplateType = Dict[Any, Any]
-TransformerObjectType = Dict[Any, Any]
-TransformerType = Union[TransformerObjectType, str]
-TransformerTypes = Union[List[TransformerType], TransformerType]
+WithArgs = Dict[str, Any]
+
+TransformSchema = TypedDict(
+    "TransformSchema",
+    {
+        "transform": str,
+        "with": WithArgs,
+    },
+    total=False,
+)
+
+
+class _CursorSchema(TypedDict, total=False):
+    version: int
+
+
+class CursorSchema(_CursorSchema):
+    on: str
+    perform: List[TransformSchema]

@@ -1,11 +1,10 @@
-from recompose.exceptions.invalid_template import InvalidTemplate
-from recompose.types import TransformerType
+from recompose.exceptions.recompose import RecomposeError
 
 
-class NotATransformerType(InvalidTemplate):
+class NotATransformerType(RecomposeError):
     """
     Raised when a query does not match any transformer types.
     """
 
-    def __init__(self, transformer_type: TransformerType) -> None:
-        super().__init__("%s is not a known transformer" % transformer_type)
+    def __init__(self, name: str) -> None:
+        super().__init__('No registered transformers named "%s"' % name)

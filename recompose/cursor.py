@@ -1,22 +1,25 @@
 from abc import ABC, abstractmethod
-from typing import Any, Iterable, cast
+from typing import Any, Iterable
 
 from recompose.logging import log
 from recompose.transformer import Transformer
 from recompose.transformers import find_transformer
-from recompose.types import TemplateType, TransformerTypes
+from recompose.types import CursorSchema
 
 
 class Cursor(ABC):
     """
-    Transformer cursor.
+    Cursor.
     """
 
-    def __init__(self, template: TemplateType) -> None:
-        self._template = template
+    def __init__(
+        self,
+        schema: CursorSchema,
+    ) -> None:
+        self._schema = schema
 
     def __str__(self) -> str:
-        return self.key()
+        return self.condition()
 
     @abstractmethod
     def _transform(self, data: Any) -> Any:
@@ -26,7 +29,7 @@ class Cursor(ABC):
 
     @classmethod
     @abstractmethod
-    def key(cls) -> str:
+    def condition(cls) -> str:
         """
         Key.
         """
@@ -45,11 +48,5 @@ class Cursor(ABC):
         Yields each transformer.
         """
 
-        value = self._template[self.key()]
-        value = cast(TransformerTypes, value)
-
-        if isinstance(value, list):
-            for t in value:
-                yield find_transformer(t)
-        else:
-            yield find_transformer(value)
+        for transform in self._schema["perform"]:
+            yield find_transformer(transform)

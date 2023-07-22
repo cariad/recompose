@@ -12,16 +12,16 @@ class EachValue(Cursor):
     def _transform(self, data: Any) -> Any:
         result: List[Any] = []
 
-        for item in data:
-            log.debug("%s transforming child item %s", self, item)
+        for child in data:
+            log.debug("%s transforming child item %s", self, child)
 
             for transformer in self.transformers:
-                transformed = transformer.transform(item)
+                transformed = transformer.transform(child)
 
                 log.debug(
                     "%s transformed child item %s to %s",
                     self,
-                    item,
+                    child,
                     transformed,
                 )
 
@@ -30,5 +30,5 @@ class EachValue(Cursor):
         return result
 
     @classmethod
-    def key(cls) -> str:
+    def condition(cls) -> str:
         return "each-value"
