@@ -3,6 +3,7 @@
     "cimg",
     "codecov",
     "Pipfile",
+    "ruamel",
     "venv"
   ]
 }

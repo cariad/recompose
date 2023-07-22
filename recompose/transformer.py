@@ -41,7 +41,9 @@ class Transformer(ABC):
         """
 
         log.debug("%s started transforming %s", self, data)
-        return self._transform(data)
+        transformed = self._transform(data)
+        log.debug("%s transformed %s to %s", self, data, transformed)
+        return transformed
 
     @property
     def with_args(self) -> Optional[WithArgs]:
