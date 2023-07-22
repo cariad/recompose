@@ -29,6 +29,7 @@ def load(id: int, dir: str) -> Any:
         (0, 0, 0),
         (1, 0, 0),
         (2, 0, 0),
+        (3, 1, 1),
     ],
 )
 def test_transform(template_id: int, data_id: int, expectation_id: int) -> None:

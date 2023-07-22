@@ -52,7 +52,8 @@ class Template:
         )
 
     def transform(self, data: Any) -> Any:
-        for transformer in self._cursor.transformers:
-            data = transformer.transform(data)
+        """
+        Transforms and returns the data.
+        """
 
-        return data
+        return self._cursor.transform(data)
