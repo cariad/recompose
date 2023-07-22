@@ -1,4 +1,4 @@
-from recompose.transformers.list_to_object import ListToObject
+from recompose.transformer_classes import ListToObject
 
 
 def test_str() -> None:

@@ -15,5 +15,5 @@ class ThisValue(Cursor):
         return data
 
     @classmethod
-    def key(cls) -> str:
+    def condition(cls) -> str:
         return "this-value"

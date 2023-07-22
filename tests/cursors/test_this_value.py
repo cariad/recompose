@@ -1,5 +1,12 @@
-from recompose.cursors.this_value import ThisValue
+from recompose.cursor_classes import ThisValue
 
 
 def test_str() -> None:
-    assert str(ThisValue({})) == "this-value"
+    transformer = ThisValue(
+        {
+            "on": "this-value",
+            "perform": [],
+        }
+    )
+
+    assert str(transformer) == "this-value"

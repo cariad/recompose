@@ -4,6 +4,7 @@ ignore: |
    .venv
 
 rules:
-   document-start: disable
-   line-length:
-      max: 88
+  document-start: disable
+  line-length:
+    max: 88
+  truthy: disable

@@ -10,9 +10,9 @@ isort = "*"
 mypy = "*"
 pytest = "*"
 pytest-cov = "*"
+"ruamel.yaml" = "*"
 shellcheck-py = "*"
 twine = "*"
-types-pyyaml = "*"
 yamllint = "*"
 
 [packages]
