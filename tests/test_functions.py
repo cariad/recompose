@@ -4,7 +4,7 @@ from typing import Any
 from pytest import mark
 from ruamel.yaml import YAML
 
-from recompose import make_cursor
+from recompose import transform
 
 test_data = Path() / "tests" / "data"
 yaml = YAML(typ="safe")
@@ -29,9 +29,8 @@ def load(id: int, dir: str) -> Any:
     ],
 )
 def test(cursor_id: int, data_id: int, expectation_id: int) -> None:
-    cursor_definition = load(cursor_id, "cursors")
-    cursor = make_cursor(cursor_definition)
+    schema = load(cursor_id, "cursors")
     data = load(data_id, "data")
     expectation = load(expectation_id, "expectations")
-    transformed = cursor.transform(data)
+    transformed = transform(schema, data)
     assert transformed == expectation

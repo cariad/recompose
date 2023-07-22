@@ -14,6 +14,7 @@ from recompose.exceptions import (
     RecomposeError,
     UnsupportedVersion,
 )
+from recompose.functions import transform
 from recompose.transformer import Transformer
 from recompose.transformers import find_transformer, register_transformer
 
@@ -37,4 +38,5 @@ __all__ = [
     "UnsupportedVersion",
     "make_cursor",
     "find_transformer",
+    "transform",
 ]

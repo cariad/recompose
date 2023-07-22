@@ -40,12 +40,14 @@ setup(
     packages=[
         "recompose",
         "recompose.cursor_classes",
+        "recompose.exceptions",
         "recompose.transformer_classes",
         "recompose.with_readers",
     ],
     package_data={
         "recompose": ["py.typed"],
         "recompose.cursor_classes": ["py.typed"],
+        "recompose.exceptions": ["py.typed"],
         "recompose.transformer_classes": ["py.typed"],
         "recompose.with_readers": ["py.typed"],
     },
