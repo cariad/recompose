@@ -1,10 +1,10 @@
 from __future__ import annotations
 
 from abc import ABC, abstractmethod
-from typing import Any, Optional
+from typing import Any
 
 from recompose.logging import log
-from recompose.types import WithArgs
+from recompose.types import TransformSchema
 
 
 class Transformer(ABC):
@@ -14,10 +14,10 @@ class Transformer(ABC):
 
     def __init__(
         self,
-        with_args: Optional[WithArgs] = None,
+        schema: TransformSchema,
     ) -> None:
-        self._with_args = with_args
-        log.debug("Created %s with %s", self, with_args)
+        self._schema = schema
+        log.debug("Created %s with %s", self, schema)
 
     def __str__(self) -> str:
         return self.name()
@@ -35,6 +35,14 @@ class Transformer(ABC):
         Key.
         """
 
+    @property
+    def schema(self) -> TransformSchema:
+        """
+        Schema.
+        """
+
+        return self._schema
+
     def transform(self, data: Any) -> Any:
         """
         Transforms and returns the data.
@@ -44,11 +52,3 @@ class Transformer(ABC):
         transformed = self._transform(data)
         log.debug("%s transformed %s to %s", self, data, transformed)
         return transformed
-
-    @property
-    def with_args(self) -> Optional[WithArgs]:
-        """
-        Transformation arguments.
-        """
-
-        return self._with_args

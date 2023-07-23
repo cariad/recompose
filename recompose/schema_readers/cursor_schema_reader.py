@@ -1,11 +1,11 @@
 from typing import Any, cast
 
 from recompose.exceptions import InvalidSchema
+from recompose.schema_reader import SchemaReader
 from recompose.types import CursorSchema
-from recompose.with_reader import WithReader
 
 
-class WithCursorSchemaReader(WithReader[CursorSchema]):
+class CursorSchemaReader(SchemaReader[CursorSchema]):
     @classmethod
     def cast(cls, value: Any) -> CursorSchema:
         if not isinstance(value, dict):

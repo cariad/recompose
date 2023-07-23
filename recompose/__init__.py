@@ -17,6 +17,7 @@ from recompose.exceptions import (
 from recompose.functions import transform
 from recompose.transformer import Transformer
 from recompose.transformers import find_transformer, register_transformer
+from recompose.types import CursorSchema
 
 with open_text(__package__, "VERSION") as t:
     __version__ = t.readline().strip()
@@ -30,6 +31,7 @@ register_transformer(recompose.transformer_classes.Pass)
 
 
 __all__ = [
+    "CursorSchema",
     "InvalidSchema",
     "NoCursorForCondition",
     "NotATransformerType",

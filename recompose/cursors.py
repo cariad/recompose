@@ -25,11 +25,13 @@ def make_cursor(
         if schema["version"] < 1 or schema["version"] > 1:
             raise UnsupportedVersion.unsupported(schema["version"], 1)
 
+    condition = schema.get("on", "this-value")
+
     for t in _types:
-        if schema["on"] == t.condition():
+        if condition == t.condition():
             return t(schema)
 
-    raise NoCursorForCondition(schema["on"])
+    raise NoCursorForCondition(condition)
 
 
 def register_cursor(cursor: Type[Cursor]) -> None:

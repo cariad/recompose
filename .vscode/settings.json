@@ -2,8 +2,15 @@
   "cSpell.words": [
     "cimg",
     "codecov",
+    "genindex",
+    "noindex",
     "Pipfile",
     "ruamel",
+    "testcode",
+    "testoutput",
+    "titlesonly",
+    "toctree",
     "venv"
-  ]
+  ],
+  "esbonio.sphinx.confDir": ""
 }

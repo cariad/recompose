@@ -3,10 +3,7 @@ on: each-value
 perform:
   path: groups
   cursor:
-    on: this-value
     perform:
       path: firefighters
       cursor:
-        on: this-value
-        perform:
-          transform: list-to-object
+        perform: list-to-object

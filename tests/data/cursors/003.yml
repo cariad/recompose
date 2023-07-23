@@ -2,15 +2,13 @@ version: 1
 on: each-value
 perform:
   - transform: pass
-    with:
-      path: groups
-      cursor:
-        on: this-value
-        perform:
-          - transform: pass
-            with:
-              path: firefighters
-              cursor:
-                on: this-value
-                perform:
-                  - transform: list-to-object
+    path: groups
+    cursor:
+      on: this-value
+      perform:
+        - transform: pass
+          path: firefighters
+          cursor:
+            on: this-value
+            perform:
+              - transform: list-to-object

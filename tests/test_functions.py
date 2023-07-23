@@ -26,6 +26,8 @@ def load(id: int, dir: str) -> Any:
         (2, 2, 2),
         (3, 3, 3),
         (4, 3, 3),
+        (5, 0, 0),
+        (6, 3, 3),
     ],
 )
 def test(cursor_id: int, data_id: int, expectation_id: int) -> None:
