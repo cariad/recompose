@@ -1,12 +1,12 @@
 from pytest import raises
 
 from recompose import InvalidSchema
-from recompose.with_readers import WithCursorSchemaReader
+from recompose.schema_readers import CursorSchemaReader
 
 
 def test_incorrect_type() -> None:
     with raises(InvalidSchema) as ex:
-        WithCursorSchemaReader.get_required(
+        CursorSchemaReader.get_required(
             {
                 "cursor": "pizza",
             }
@@ -17,6 +17,6 @@ def test_incorrect_type() -> None:
 
 def test_missing() -> None:
     with raises(InvalidSchema) as ex:
-        WithCursorSchemaReader.get_required({})
+        CursorSchemaReader.get_required({})
 
     assert str(ex.value) == '"cursor" is not present in schema (<none>)'

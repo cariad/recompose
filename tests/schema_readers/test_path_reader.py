@@ -1,15 +1,13 @@
-from typing import Optional
-
 from pytest import mark, raises
 
 from recompose import InvalidSchema
-from recompose.types import WithArgs
-from recompose.with_readers import WithPathReader
+from recompose.schema_readers import PathReader
+from recompose.types import TransformSchema
 
 
 def test_incorrect_type() -> None:
     with raises(InvalidSchema) as ex:
-        WithPathReader.get_required(
+        PathReader.get_required(
             {
                 "path": 0,
             }
@@ -21,10 +19,9 @@ def test_incorrect_type() -> None:
 @mark.parametrize(
     "args",
     [
-        None,
         {},
         {"foo": "bar"},
     ],
 )
-def test_optional(args: Optional[WithArgs]) -> None:
-    assert WithPathReader.get_optional(args) is None
+def test_optional(args: TransformSchema) -> None:
+    assert PathReader.get_optional(args) is None
