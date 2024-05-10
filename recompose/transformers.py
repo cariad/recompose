@@ -1,6 +1,7 @@
-from typing import List, Type
+from typing import List, Optional, Type
 
 from recompose.exceptions import NotATransformerType
+from recompose.options import Options
 from recompose.transformer import Transformer
 from recompose.types import AnyTransformSchema
 
@@ -9,6 +10,7 @@ _types: List[Type[Transformer]] = []
 
 def find_transformer(
     schema: AnyTransformSchema,
+    options: Optional[Options] = None,
 ) -> Transformer:
     """
     Finds and returns the first transformer that fits a definition.
@@ -19,7 +21,11 @@ def find_transformer(
     for t in _types:
         if name == t.name():
             config = schema if isinstance(schema, dict) else {}
-            return t(config)
+
+            return t(
+                config,
+                options=options,
+            )
 
     raise NotATransformerType(name)
 

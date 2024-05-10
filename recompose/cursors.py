@@ -1,7 +1,8 @@
-from typing import List, Type
+from typing import List, Optional, Type
 
 from recompose.cursor import Cursor
 from recompose.exceptions import NoCursorForCondition, UnsupportedVersion
+from recompose.options import Options
 from recompose.types import CursorSchema
 
 _types: List[Type[Cursor]] = []
@@ -9,6 +10,7 @@ _types: List[Type[Cursor]] = []
 
 def make_cursor(
     schema: CursorSchema,
+    options: Optional[Options] = None,
     require_version: bool = True,
 ) -> Cursor:
     """
@@ -29,7 +31,10 @@ def make_cursor(
 
     for t in _types:
         if condition == t.condition():
-            return t(schema)
+            return t(
+                schema,
+                options=options,
+            )
 
     raise NoCursorForCondition(condition)
 

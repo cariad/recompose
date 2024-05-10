@@ -2,7 +2,7 @@
 Recompose is a Python package for templated data recomposition.
 """
 
-from importlib.resources import open_text
+from importlib.resources import files
 
 import recompose.cursor_classes
 import recompose.transformer_classes
@@ -11,15 +11,17 @@ from recompose.exceptions import (
     InvalidSchema,
     NoCursorForCondition,
     NotATransformerType,
+    PathNotFound,
     RecomposeError,
     UnsupportedVersion,
 )
 from recompose.functions import transform
+from recompose.options import Options
 from recompose.transformer import Transformer
 from recompose.transformers import find_transformer, register_transformer
 from recompose.types import CursorSchema
 
-with open_text(__package__, "VERSION") as t:
+with files(__package__).joinpath("VERSION").open("r") as t:
     __version__ = t.readline().strip()
 
 
@@ -35,6 +37,8 @@ __all__ = [
     "InvalidSchema",
     "NoCursorForCondition",
     "NotATransformerType",
+    "Options",
+    "PathNotFound",
     "RecomposeError",
     "Transformer",
     "UnsupportedVersion",

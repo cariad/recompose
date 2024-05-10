@@ -1,9 +1,10 @@
 from __future__ import annotations
 
 from abc import ABC, abstractmethod
-from typing import Any
+from typing import Any, Optional
 
 from recompose.logging import log
+from recompose.options import Options
 from recompose.types import TransformSchema
 
 
@@ -15,8 +16,10 @@ class Transformer(ABC):
     def __init__(
         self,
         schema: TransformSchema,
+        options: Optional[Options] = None,
     ) -> None:
         self._schema = schema
+        self.options = options
         log.debug("Created %s with %s", self, schema)
 
     def __str__(self) -> str:

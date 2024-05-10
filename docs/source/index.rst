@@ -92,6 +92,8 @@ For example, the code below describes a dataset with groups of people with speci
 
     print(dumps(transformed, indent=4))
 
+By default, the :ref:`transform` function will raise `PathNotFound` if a path in the schema doesn't exist. To allow missing data, create and pass an :ref:`options` instance.
+
 Result
 ~~~~~~
 
@@ -166,6 +168,8 @@ Recompose is released under the MIT Licence at https://github.com/cariad/recompo
     :titlesonly:
 
     self
+    transform
+    options
     cursors/index
     transformers/index
 

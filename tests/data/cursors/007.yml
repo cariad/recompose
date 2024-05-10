@@ -1,0 +1,14 @@
+# Duplicate of 003 but with a misspelled path.
+
+version: 1
+on: each-value
+perform:
+  - transform: pass
+    path: groups
+    cursor:
+      perform:
+        - transform: pass
+          path: fire_starters  # "firefighters" in 003
+          cursor:
+            perform:
+              - transform: list-to-object
