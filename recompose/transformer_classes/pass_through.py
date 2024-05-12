@@ -1,6 +1,7 @@
 from typing import Any
 
 from recompose.cursors import make_cursor
+from recompose.enums import ALLOWS, Allow
 from recompose.exceptions import PathNotFound
 from recompose.logging import log
 from recompose.options import Options
@@ -30,7 +31,14 @@ class Pass(Transformer):
         except KeyError:
             options = self.options or Options()
 
-            if options.allow_missing_data:
+            if options.missing_data in ALLOWS:
+                if options.missing_data == Allow.ALLOW_WITH_WARNING:
+                    log.warning(
+                        'Path "%s" not found in record %s',
+                        path,
+                        data,
+                    )
+
                 return data
 
             raise PathNotFound(

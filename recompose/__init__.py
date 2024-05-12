@@ -7,6 +7,7 @@ from importlib.resources import files
 import recompose.cursor_classes
 import recompose.transformer_classes
 from recompose.cursors import make_cursor, register_cursor
+from recompose.enums import Allow
 from recompose.exceptions import (
     InvalidSchema,
     NoCursorForCondition,
@@ -33,6 +34,7 @@ register_transformer(recompose.transformer_classes.Pass)
 
 
 __all__ = [
+    "Allow",
     "CursorSchema",
     "InvalidSchema",
     "NoCursorForCondition",

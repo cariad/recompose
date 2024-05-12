@@ -20,7 +20,7 @@ The code below uses the inferred :ref:`this-value <this-value>` cursor with the 
 
 .. testcode::
 
-    from recompose import transform, CursorSchema
+    from recompose import CursorSchema, transform
 
     data = ["one", "two", "three"]
 

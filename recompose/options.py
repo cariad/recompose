@@ -1,13 +1,16 @@
+from recompose.enums import Allow
+
+
 class Options:
     """
     Recomposition options.
 
-    `allow_missing_data` describes whether missing data should be accepted or
-    raise `PathNotFound`.
+    `missing_data` describes whether missing data should be accepted or raise
+    `PathNotFound`.
     """
 
     def __init__(
         self,
-        allow_missing_data: bool = False,
+        missing_data: Allow = Allow.DENY,
     ) -> None:
-        self.allow_missing_data = allow_missing_data
+        self.missing_data = missing_data

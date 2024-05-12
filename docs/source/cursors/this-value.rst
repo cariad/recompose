@@ -15,7 +15,7 @@ The code below uses the **this-value** cursor with the :ref:`list-to-object <lis
 
 .. testcode::
 
-    from recompose import transform, CursorSchema
+    from recompose import CursorSchema, transform
 
     data = ["one", "two", "three "]
 

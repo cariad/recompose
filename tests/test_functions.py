@@ -4,9 +4,7 @@ from typing import Any, Optional
 from pytest import mark, raises
 from ruamel.yaml import YAML
 
-from recompose import transform
-from recompose.exceptions import PathNotFound
-from recompose.options import Options
+from recompose import Allow, Options, PathNotFound, transform
 
 test_data = Path() / "tests" / "data"
 yaml = YAML(typ="safe")
@@ -30,7 +28,8 @@ def load(id: int, dir: str) -> Any:
         (4, 3, 3, None),
         (5, 0, 0, None),
         (6, 3, 3, None),
-        (7, 3, 4, Options(allow_missing_data=True)),
+        (7, 3, 4, Options(missing_data=Allow.ALLOW)),
+        (7, 3, 4, Options(missing_data=Allow.ALLOW_WITH_WARNING)),
     ],
 )
 def test(
