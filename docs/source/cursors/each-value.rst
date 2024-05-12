@@ -18,7 +18,7 @@ The code below uses the **each-value** cursor with the :ref:`list-to-object <lis
 .. testcode::
 
     from json import dumps
-    from recompose import transform, CursorSchema
+    from recompose import CursorSchema, transform
 
     data = {
         "first": ["one", "two", "three"],

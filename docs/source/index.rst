@@ -11,7 +11,7 @@ For example, the code below describes a dataset with groups of people with speci
 .. testcode::
 
     from json import dumps
-    from recompose import transform, CursorSchema
+    from recompose import CursorSchema, transform
 
     data = {
         "2023-06-04": {
@@ -147,6 +147,166 @@ Result
         }
     }
 
+
+By default, the :ref:`transform` function will raise `PathNotFound` if a path in the schema doesn't exist. To allow missing data, create and pass an :ref:`options` instance.
+
+.. testcode::
+
+    from json import dumps
+    from recompose import Allow, CursorSchema, Options, transform
+
+    data = {
+        "2023-06-04": {
+            "groups": {
+                "chefs": [
+                    {
+                        "name": "Alice"
+                    },
+                    {
+                        "name": "Bob"
+                    }
+                ],
+                "firefighters": [
+                    {
+                        "name": "Daniel"
+                    },
+                    {
+                        "name": "Esther"
+                    }
+                ],
+                "zookeepers": [
+                    {
+                        "name": "Gregory"
+                    },
+                    {
+                        "name": "Harold"
+                    }
+                ]
+            }
+        },
+        "2023-06-05": {
+            "groups": {
+                "chefs": [
+                    {
+                        "name": "Jet"
+                    },
+                    {
+                        "name": "Karen"
+                    }
+                ],
+                "firefighters": [
+                    {
+                        "name": "Mater"
+                    },
+                    {
+                        "name": "Nigel"
+                    }
+                ],
+                "zookeepers": [
+                    {
+                        "name": "Peter"
+                    },
+                    {
+                        "name": "Quentin"
+                    }
+                ]
+            }
+        }
+    }
+
+    schema: CursorSchema = {
+        "version": 1,
+        "on": "each-value",
+        "perform": {
+            "path": "groups",
+            "cursor": {
+                "perform": {
+                    "path": "fire_starters",  # Path does not exist
+                    "cursor": {
+                        "perform": "list-to-object",
+                    }
+                }
+            }
+        }
+    }
+
+    options = Options(
+        missing_data = Allow.ALLOW,  # Allow (skip) missing paths
+    )
+
+    transformed = transform(
+        schema,
+        data,
+        options=options,
+    )
+
+    print(dumps(transformed, indent=4))
+
+Result
+~~~~~~
+
+.. testoutput::
+   :options: +NORMALIZE_WHITESPACE
+
+    {
+        "2023-06-04": {
+            "groups": {
+                "chefs": [
+                    {
+                        "name": "Alice"
+                    },
+                    {
+                        "name": "Bob"
+                    }
+                ],
+                "firefighters": [
+                    {
+                        "name": "Daniel"
+                    },
+                    {
+                        "name": "Esther"
+                    }
+                ],
+                "zookeepers": [
+                    {
+                        "name": "Gregory"
+                    },
+                    {
+                        "name": "Harold"
+                    }
+                ]
+            }
+        },
+        "2023-06-05": {
+            "groups": {
+                "chefs": [
+                    {
+                        "name": "Jet"
+                    },
+                    {
+                        "name": "Karen"
+                    }
+                ],
+                "firefighters": [
+                    {
+                        "name": "Mater"
+                    },
+                    {
+                        "name": "Nigel"
+                    }
+                ],
+                "zookeepers": [
+                    {
+                        "name": "Peter"
+                    },
+                    {
+                        "name": "Quentin"
+                    }
+                ]
+            }
+        }
+    }
+
 Installation
 ------------
 
@@ -166,6 +326,8 @@ Recompose is released under the MIT Licence at https://github.com/cariad/recompo
     :titlesonly:
 
     self
+    transform
+    options
     cursors/index
     transformers/index
 

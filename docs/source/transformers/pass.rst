@@ -40,7 +40,7 @@ This leaves all the other key values untouched, while replacing the "firefighter
 .. testcode::
 
     from json import dumps
-    from recompose import transform, CursorSchema
+    from recompose import CursorSchema, transform
 
     data = {
         "chefs": [

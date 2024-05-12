@@ -9,7 +9,7 @@ Full documentation is online at [cariad.github.io/recompose](https://cariad.gith
 For example, the code below describes a dataset with groups of people with specific careers, and a schema that reduces the list of firefighters down to a single object.
 
 ```python
-from recompose import transform, CursorSchema
+from recompose import CursorSchema, transform
 
 data = {
     "2023-06-04": {

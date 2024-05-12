@@ -40,6 +40,7 @@ setup(
     packages=[
         "recompose",
         "recompose.cursor_classes",
+        "recompose.enums",
         "recompose.exceptions",
         "recompose.schema_readers",
         "recompose.transformer_classes",
@@ -47,6 +48,7 @@ setup(
     package_data={
         "recompose": ["py.typed"],
         "recompose.cursor_classes": ["py.typed"],
+        "recompose.enums": ["py.typed"],
         "recompose.exceptions": ["py.typed"],
         "recompose.schema_readers": ["py.typed"],
         "recompose.transformer_classes": ["py.typed"],
